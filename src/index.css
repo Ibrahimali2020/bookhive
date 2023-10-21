@@ -1,13 +1,346 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary-yellow: #FFD700;
+  --black: #000000;
+  --white: #FFFFFF;
+  --brown: #8B4513;
+  --gold: #D4AF37;
+  --light-green: #90EE90;
+  --soft-blue: #ADD8E6;
+  --gray: #CCCCCC; 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* Header styles */
+header {
+  background-color: var(--primary-yellow); /* Using your primary color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--black);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+header .book {
+  color: var(--soft-blue); /* Using a color from your palette */
+  margin-right: 5px;
+}
+
+header .hive {
+  color: var(--brown); /* Using a color from your palette */
+}
+
+/* Search bar styles */
+header .search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center; /* Center vertically */
+  margin: 0 20px;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  overflow: hidden; /* Hide overflowing button shadow */
+}
+
+header .search-bar input {
+  padding: 10px;
+  width: 100%; /* Take the full width */
+  border: none;
+  outline: none; /* Remove input outline */
+}
+
+header .search-bar button {
+  background-color: var(--soft-blue);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+header .search-bar button:hover {
+  background-color: var(--gold); /* Highlight on hover */
+}
+
+
+/* Adjustments for the user actions */
+header .user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+header .user-actions .login {
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+
+header .user-actions .cart {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  background-color: var(--gold);
+  color: var(--black);
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+header .user-actions .cart:hover {
+  background-color: var(--soft-blue);
+  color: var(--white);
+  cursor: pointer;
+}
+
+
+.category {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.category ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.category li {
+  position: relative;
+}
+
+.category-button {
+  background: none;
+  border: none;
+  color: var(--soft-blue);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px 15px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.category-button:hover,
+.category-button:focus {
+  color: var(--gold);
+}
+
+.category-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--soft-blue);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s;
+}
+
+.category-button:hover::before,
+.category-button:focus::before {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+.category-button.selected::before {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+.category-button.selected {
+  color: var(--gold);
+}
+
+.btn-authors {
+  background-color: var(--brown);
+  color: var(--primary-yellow);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.btn-authors:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+/*  */
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+main {
+  min-height: 100vh;
+}
+
+main .section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--soft-blue);
+  margin: 20px 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+main .book {
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: transform 0.3s; /* Add transition for smooth effect */
+
+}
+
+.book:hover {
+  transform: scale(1.03); /* Scale up the book on hover */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Modify the box shadow on hover */
+}
+
+main .book img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+main .book h3 {
+  font-size: 1.5rem;
+  color: var(--soft-blue);
+  margin: 10px 0;
+}
+
+main .book p {
+  color: var(--black);
+}
+
+main .add-to-cart-button {
+  background-color: var(--soft-blue);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  margin-top: auto;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+main .add-to-cart-button:hover {
+  background-color: var(--gold);
+}
+
+
+
+/* Footer styles */
+.footer {
+  background-color: var(--primary-yellow);
+  color: var(--black);
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.footer h3 {
+  font-size: 1.5rem;
+  color: var(--soft-blue);
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--black);
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: var(--soft-blue);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 0.9rem;
+}
+
+
+
+/* Error component styles */
+.error {
+  background-color: var(--soft-blue); /* Using a color from your palette */
+  color: var(--white); /* Text color */
+  border: 1px solid var(--black); /* Border color */
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center; /* Center the text horizontally */
+  margin: 20px; /* Add some spacing around the error message */
+}
+
+.error-message {
+  font-size: 1rem;
+  margin: 0;
+}
+
+
+/* Hover styles for the error component */
+.error:hover {
+  background-color: var(--gold); /* Change color on hover */
+  cursor: pointer;
+}
+
